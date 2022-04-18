@@ -10,6 +10,10 @@ public class TeleportTrigger : MonoBehaviour
     bool canTeleport;
     Transform transformToTeleport;
 
+    [SerializeField] GameObject directionalLight;
+
+    [SerializeField] bool turnOnLight;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -35,6 +39,15 @@ public class TeleportTrigger : MonoBehaviour
         if(canTeleport && Input.GetKeyDown(KeyCode.E))
         {
             transformToTeleport.position = spawnPoint.position;
+
+            if (turnOnLight)
+            {
+                directionalLight.SetActive(true);
+            }
+            else
+            {
+                directionalLight.SetActive(false);
+            }
         }
     }
 }
